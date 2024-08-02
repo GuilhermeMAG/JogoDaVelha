@@ -1,13 +1,36 @@
 .square {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border: 1px solid #999;
+  width: 60px;
+  height: 60px;
+  background: var(--square-bg);
+  border: 1px solid var(--square-border);
   font-size: 24px;
   font-weight: bold;
-  line-height: 50px;
+  line-height: 60px;
   text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.square.light {
+  --square-bg: #fff;
+  --square-border: #999;
+}
+
+.square.dark {
+  --square-bg: #555;
+  --square-border: #888;
+}
+
+.square:hover {
+  background-color: var(--square-hover-bg);
+}
+
+.square.light:hover {
+  --square-hover-bg: #f0f0f0;
+}
+
+.square.dark:hover {
+  --square-hover-bg: #666;
 }
 
 .square.highlight {

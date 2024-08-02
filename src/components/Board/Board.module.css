@@ -4,4 +4,14 @@
 
 .status {
   margin-bottom: 10px;
+  font-size: 1.25rem;
+  color: var(--status-color);
+}
+
+.light .status {
+  --status-color: #333;
+}
+
+.dark .status {
+  --status-color: #f0f2f5;
 }

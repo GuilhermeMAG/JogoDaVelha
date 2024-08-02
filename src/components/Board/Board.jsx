@@ -1,12 +1,14 @@
 import React from "react";
 import Square from "../Square/Square";
 import calculateWinner from "../../utils/calculateWinner";
+import { useTheme } from "../../contexts/ThemeContext";
 import styles from "./Board.module.css";
 
 const Board = ({ xIsNext, squares, onPlay }) => {
 	const result = calculateWinner(squares);
 	const winner = result ? result.winner : null;
 	const winningLine = result ? result.line : [];
+	const { theme } = useTheme();
 
 	const handleClick = (i) => {
 		if (calculateWinner(squares) || squares[i]) {
@@ -42,7 +44,7 @@ const Board = ({ xIsNext, squares, onPlay }) => {
 
 	return (
 		<>
-			<div className={styles.status}>{status}</div>
+			<div className={`${styles.status} ${theme}`}>{status}</div>
 			<div className={styles["board-row"]}>
 				{renderSquare(0)}
 				{renderSquare(1)}
