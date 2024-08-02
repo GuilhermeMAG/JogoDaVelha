@@ -10,7 +10,7 @@ const Game = () => {
 	const { theme, toggleTheme } = useTheme();
 
 	const moves = history.map((_squares, move) => {
-		const description = move ? `Go to move #${move}` : "Go to game start";
+		const description = move ? `Movimento #${move}` : "Inicio de jogo";
 		return (
 			<li key={move}>
 				<button className={styles["move-button"]} onClick={() => jumpTo(move)}>
@@ -23,9 +23,9 @@ const Game = () => {
 	return (
 		<div className={`${styles.game} ${styles[theme]}`}>
 			<button className={styles["theme-toggle"]} onClick={toggleTheme}>
-				Toggle Theme
+				Mudar Tema
 			</button>
-			<h1 className={styles.title}>Tic-Tac-Toe</h1>
+			<h1 className={styles.title}>Jogo da Velha</h1>
 			<div
 				className={`${styles["game-board"]} ${
 					theme === "dark" ? styles.dark : ""
@@ -36,7 +36,7 @@ const Game = () => {
 				className={`${styles["game-info"]} ${theme === "dark" ? styles.dark : ""}`}>
 				<ol className={styles["game-info-ol"]}>{moves}</ol>
 				<button className={styles["restart-button"]} onClick={resetGame}>
-					Restart Game
+					Reiniciar Jogo
 				</button>
 			</div>
 		</div>

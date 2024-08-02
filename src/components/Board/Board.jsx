@@ -35,11 +35,11 @@ const Board = ({ xIsNext, squares, onPlay }) => {
 
 	let status;
 	if (winner) {
-		status = "Winner: " + winner;
+		status = "Vencedor: " + winner;
 	} else if (!squares.includes(null)) {
-		status = "Draw";
+		status = "Empate!";
 	} else {
-		status = "Next player: " + (xIsNext ? "X" : "O");
+		status = "Próximo jogador: " + (xIsNext ? "X" : "O");
 	}
 
 	return (
