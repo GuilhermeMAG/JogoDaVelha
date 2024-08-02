@@ -1,4 +1,3 @@
-import React from "react";
 import Board from "../../components/Board/Board";
 import useGameLogic from "../../hooks/useGameLogic";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -13,7 +12,11 @@ const Game = () => {
 		const description = move ? `Movimento #${move}` : "Inicio de jogo";
 		return (
 			<li key={move}>
-				<button className={styles["move-button"]} onClick={() => jumpTo(move)}>
+				<button
+					className={`${styles["move-button"]} ${
+						theme === "dark" ? styles.dark : ""
+					}`}
+					onClick={() => jumpTo(move)}>
 					{description}
 				</button>
 			</li>

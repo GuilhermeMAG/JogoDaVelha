@@ -1,45 +1,47 @@
-import React from "react";
-import Square from "../Square/Square";
-import calculateWinner from "../../utils/calculateWinner";
-import { useTheme } from "../../contexts/ThemeContext";
-import styles from "./Board.module.css";
+import React from 'react';
+import Square from '../Square/Square';
+import calculateWinner from '../../utils/calculateWinner';
+import { useTheme } from '../../contexts/ThemeContext';
+import styles from './Board.module.css';
 
-const Board = ({ xIsNext, squares, onPlay }) => {
+interface BoardProps {
+	xIsNext: boolean;
+	squares: Array<string | null>;
+	onPlay: (nextSquares: Array<string | null>) => void;
+}
+
+const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 	const result = calculateWinner(squares);
 	const winner = result ? result.winner : null;
 	const winningLine = result ? result.line : [];
 	const { theme } = useTheme();
 
-	const handleClick = (i) => {
-		if (calculateWinner(squares) || squares[i]) {
+	const handleClick = (i: number) => {
+		if (winner || squares[i]) {
 			return;
 		}
 		const nextSquares = squares.slice();
-		if (xIsNext) {
-			nextSquares[i] = "X";
-		} else {
-			nextSquares[i] = "O";
-		}
+		nextSquares[i] = xIsNext ? 'X' : 'O';
 		onPlay(nextSquares);
 	};
 
-	const renderSquare = (i) => {
+	const renderSquare = (i: number) => {
 		return (
 			<Square
 				value={squares[i]}
 				onSquareClick={() => handleClick(i)}
-				highlight={winningLine.includes(i)}
+				highlight={winningLine ? winningLine.includes(i) : false}
 			/>
 		);
 	};
 
 	let status;
 	if (winner) {
-		status = "Vencedor: " + winner;
+		status = 'Vencedor: ' + winner;
 	} else if (!squares.includes(null)) {
-		status = "Empate!";
+		status = 'Empate!';
 	} else {
-		status = "Próximo jogador: " + (xIsNext ? "X" : "O");
+		status = 'Próximo jogador: ' + (xIsNext ? 'X' : 'O');
 	}
 
 	return (
