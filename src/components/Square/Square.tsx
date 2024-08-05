@@ -6,16 +6,17 @@ interface SquareProps {
 	value: string | null;
 	onSquareClick: () => void;
 	highlight: boolean;
+	potentialWin: boolean;
 }
 
-const Square: React.FC<SquareProps> = ({ value, onSquareClick, highlight }) => {
+const Square: React.FC<SquareProps> = ({ value, onSquareClick, highlight, potentialWin}) => {
 	const { theme } = useTheme();
 
 	return (
-		<button
-			className={`${styles.square} ${highlight ? styles.highlight : ''} ${styles[theme]}`}
-			onClick={onSquareClick}
-		>
+		<button 
+      className={`${styles.square} ${highlight ? styles.highlight : ''} ${potentialWin ? styles.potentialWin : ''} ${styles[theme]}`} 
+      onClick={onSquareClick}
+    >
 			{value}
 		</button>
 	);

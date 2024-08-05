@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Square from '../Square/Square';
 import calculateWinner from '../../utils/calculateWinner';
+import calculatePotentialWin from '../../utils/calculatePotentialWin';
 import { useTheme } from '../../contexts/ThemeContext';
 import styles from './Board.module.css';
 
@@ -15,6 +16,7 @@ const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 	const winner = result ? result.winner : null;
 	const winningLine = result ? result.line : [];
 	const { theme } = useTheme();
+	const [hoveredSquare, setHoveredSquare] = useState<number | null>(null);
 
 	const handleClick = (i: number) => {
 		if (winner || squares[i]) {
@@ -26,11 +28,15 @@ const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 	};
 
 	const renderSquare = (i: number) => {
+		const isHighlight = winningLine ? winningLine.includes(i) : false;
+		const isPotentialWin = calculatePotentialWin(squares, i, xIsNext);
+
 		return (
 			<Square
 				value={squares[i]}
 				onSquareClick={() => handleClick(i)}
-				highlight={winningLine ? winningLine.includes(i) : false}
+				highlight={isHighlight}
+				potentialWin={isPotentialWin}
 			/>
 		);
 	};

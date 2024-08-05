@@ -13,10 +13,7 @@ const Game = () => {
 		return (
 			<li key={move}>
 				<button
-					className={`${styles["move-button"]} ${
-						theme === "dark" ? styles.dark : ""
-					}`}
-					onClick={() => jumpTo(move)}>
+					className={`${styles["move-button"]} ${theme === "dark" ? styles.dark : ""}`} onClick={() => jumpTo(move)}>
 					{description}
 				</button>
 			</li>
@@ -29,10 +26,7 @@ const Game = () => {
 				Mudar Tema
 			</button>
 			<h1 className={styles.title}>Jogo da Velha</h1>
-			<div
-				className={`${styles["game-board"]} ${
-					theme === "dark" ? styles.dark : ""
-				}`}>
+			<div className={`${styles["game-board"]} ${theme === "dark" ? styles.dark : ""}`}>
 				<Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
 			</div>
 			<div
