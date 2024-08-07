@@ -36,3 +36,7 @@
 .square.highlight {
   background: #d4edda;
 }
+
+.square.potentialWin {
+  background: #ffeb3b;
+}

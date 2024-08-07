@@ -3,7 +3,7 @@ import { GameProvider } from './contexts/GameContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Game from './pages/Game/Game';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <ThemeProvider>
       <GameProvider>
